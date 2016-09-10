@@ -147,6 +147,7 @@ func (client *Client) onPacket(decoder *decoder, packet *packet) ([]interface{},
 	case _ERROR:
 		message = "error"
 	case _ACK:
+		return nil, client.onAck(packet.Id, decoder, packet) //to recv _ACK msg
 	case _BINARY_ACK:
 		return nil, client.onAck(packet.Id, decoder, packet)
 	default:
